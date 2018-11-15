@@ -1,5 +1,6 @@
 const signInModule = function() {	
 	let $btnSignIn = $('#btnSignin')
+	let $signForm = $('.form-signin')
 	let $txtEmail = $('#txtEmail')
 	let $txtPassword = $('#txtPassword')
 
@@ -16,6 +17,10 @@ const signInModule = function() {
 	/* signIn button click handler method*/
 	const signInHandler = function() {
 		if(validateForm()){
+
+			$signForm.submit();
+
+			/*
 			$.ajax({
 				url : '/users/validateLogin',
 				type : 'POST',
@@ -26,12 +31,14 @@ const signInModule = function() {
 		        contentType: 'application/json; charset=utf-8',
             	dataType: 'json',
 				success : function(response) {
-					console.log('response is ', response)
+					$.get('/home?token=' + response.token)
 				},
 				error : function(error) {
 					console.log('error is ')
 				}
 			})
+			*/
+			
 		} else {
 			alert('email and password required !! ')
 		}
